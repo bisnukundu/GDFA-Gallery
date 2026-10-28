@@ -1,9 +1,7 @@
 
 
-/* ===== ছবি বসানোর জায়গা =====
-   HERO_IMG: পুরো টিমের ছবি, যেমন "images/team.jpg" (কোনো ডার্ক ওভারলে নেই, ছবি পরিষ্কার দেখাবে)
-   photos: প্রতিটি অ্যালবামে গ্রুপ ছবির পাথ দিন, সর্বোচ্চ ১৫টি। ফাঁকা থাকলে প্লেসহোল্ডার দেখাবে। */
-const HERO_IMG = "images/teams.jpg";
+
+const HERO_IMG = "images/teams.webp";
 const MAX = 15;
 const albums = [
     { id: "v1", name: "GDFA V1 Program", hue: 38, photos: [
@@ -88,14 +86,6 @@ const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting
 document.querySelectorAll(".tile").forEach((t, i) => { t.style.transitionDelay = (i % 3) * 110 + "ms," + (i % 3) * 110 + "ms,0ms"; io.observe(t) });
 const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) document.querySelectorAll(".pill").forEach(p => p.classList.toggle("on", p.dataset.id === e.target.id)) }), { rootMargin: "-40% 0px -55% 0px" });
 document.querySelectorAll(".album").forEach(s => so.observe(s));
-/* floating gold dust */
-(() => {
-    const c = $("#dust"), x = c.getContext("2d"); let W, H, P = [];
-    const fit = () => { W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; P = Array.from({ length: Math.round(W / 16) }, () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2 + .6, v: Math.random() * .5 + .15, o: Math.random() * .6 + .2 })) };
-    fit(); addEventListener("resize", fit);
-    if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-    (function f() { x.clearRect(0, 0, W, H); P.forEach(p => { p.y -= p.v; p.x += Math.sin(p.y / 40) * .3; if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W } x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.3); x.fillStyle = `rgba(217,164,65,${p.o})`; x.fill() }); requestAnimationFrame(f) })()
-})();
 /* lightbox */
 const lb = $("#lb"), lbc = $("#lbc");
 function open(a, i) { cur = a.list.map((s, k) => ({ s, a, k })); idx = i; show(); lb.classList.add("open") }
