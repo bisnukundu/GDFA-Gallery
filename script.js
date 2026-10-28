@@ -64,9 +64,10 @@ albums.forEach(a => {
     const n = a.photos.length || 12, list = Array.from({ length: Math.min(n, MAX) }, (_, i) => a.photos[i] || null);
     a.list = list;
     pills.insertAdjacentHTML("beforeend", `<button class="pill" data-id="${a.id}">${a.name}</button>`);
-    const s = document.createElement("section"); s.className = "album"; s.id = a.id;
+    const s = document.createElement("section"); s.className = `album${a.id === "v1" ? " album-v1" : ""}`; s.id = a.id;
     s.innerHTML = `<div class="ah"><h2 class="serif">${a.name}</h2><span>${list.length} MOMENTS</span></div><div class="grid"></div>`;
     const g = s.querySelector(".grid");
+    g.classList.add("grid-v1");
     list.forEach((src, i) => {
         const [w, h] = ratios[(i * 3 + a.hue) % ratios.length];
         const t = document.createElement("div"); t.className = "tile"; t.dataset.r = `${w}/${h}`;
