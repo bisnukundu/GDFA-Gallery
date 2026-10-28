@@ -1,163 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GDFA — Moments of Our Community</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0e0d0b;--surf:#181612;--txt:#f3ece0;--mut:#9b9284;--gold:#d9a441;--line:#2a2620;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f2e9;--surf:#ece4d4;--txt:#1d1a14;--mut:#6f6656;--gold:#a8741a;--line:#d9ceb8}}
-html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
-*{box-sizing:border-box;margin:0}
-body{background:var(--bg);color:var(--txt);font-family:"Inter",system-ui,sans-serif;overflow-x:hidden}
-.serif{font-family:"Playfair Display",Georgia,serif}
-/* HERO: photo only, no overlay */
-.hero{height:100svh;min-height:520px;padding:14px;perspective:1400px;display:grid}
-.frame{position:relative;border-radius:28px;overflow:hidden;transform-style:preserve-3d;transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:transform .25s ease-out;box-shadow:0 0 0 2px var(--gold),0 0 70px rgba(217,164,65,.45),0 40px 90px rgba(0,0,0,.5);background:var(--surf);animation:rise 1.4s cubic-bezier(.2,.9,.2,1) both,glow 4s ease-in-out 1.4s infinite}
-@keyframes rise{from{opacity:0;transform:rotateX(18deg) translateY(60px) scale(.94)}}
-@keyframes glow{50%{box-shadow:0 0 0 2px var(--gold),0 0 120px rgba(217,164,65,.7),0 40px 90px rgba(0,0,0,.5)}}
-.frame img,.hph{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;transform:translate(calc(var(--px,0)*-14px),calc(var(--py,0)*-14px));transition:transform .25s ease-out}
-.hph{display:grid;place-items:center;color:rgba(255,255,255,.7);font-size:14px;letter-spacing:3px;background:radial-gradient(circle at 25% 25%,#f5c660,transparent 45%),radial-gradient(circle at 80% 80%,#b8651f,transparent 50%),linear-gradient(135deg,#6b3d10,#d9a441 50%,#4a2a0a);background-size:160% 160%;animation:mesh 10s ease-in-out infinite alternate}
-@keyframes mesh{to{background-position:100% 100%}}
-.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.22) 50%,transparent 58%);background-size:260% 100%;animation:sh 5.5s ease-in-out 1.6s infinite;pointer-events:none}
-@keyframes sh{from{background-position:140% 0}to{background-position:-140% 0}}
-.down{position:absolute;left:50%;bottom:22px;translate:-50% 0;width:44px;height:44px;border-radius:50%;border:1.5px solid #fff;color:#fff;display:grid;place-items:center;text-decoration:none;font-size:20px;animation:bob 1.8s ease-in-out infinite;backdrop-filter:blur(6px);background:rgba(255,255,255,.14)}
-@keyframes bob{50%{transform:translateY(8px)}}
-/* INTRO (text lives here) */
-.intro{position:relative;text-align:center;padding:110px 20px 90px;overflow:hidden}
-#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.intro>div{position:relative}
-.logo{width:92px;height:92px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;margin:0 auto 28px;font-weight:700;letter-spacing:2px;color:var(--gold);font-size:22px;box-shadow:0 0 50px rgba(217,164,65,.3);animation:spin3d 9s linear infinite;transform-style:preserve-3d}
-@keyframes spin3d{from{transform:perspective(500px) rotateY(0)}to{transform:perspective(500px) rotateY(360deg)}}
-h1{font-size:clamp(40px,8vw,84px);line-height:1.04;letter-spacing:-1px}
-h1 em{color:var(--gold)}
-.sub{color:var(--mut);margin:20px auto 34px;max-width:430px;line-height:1.6}
-.btn{display:inline-block;padding:14px 30px;border:1px solid var(--gold);color:var(--gold);border-radius:99px;text-decoration:none;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;transition:.3s}
-.btn:hover{background:var(--gold);color:var(--bg);box-shadow:0 10px 34px rgba(217,164,65,.4)}
-.stats{display:flex;gap:40px;justify-content:center;margin-top:54px;color:var(--mut);font-size:13px;flex-wrap:wrap}
-.stats b{display:block;font-size:32px;color:var(--txt);font-family:"Playfair Display",Georgia,serif}
-/* nav + gallery */
-nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 12px}
-.pills{display:flex;gap:8px;overflow-x:auto;max-width:1200px;margin:auto;scrollbar-width:none}
-.pill{flex:none;padding:9px 18px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--mut);cursor:pointer;font-size:14px;transition:.25s}
-.pill.on,.pill:hover{background:var(--gold);color:var(--bg);border-color:var(--gold);transform:translateY(-2px)}
-main{max-width:1200px;margin:auto;padding:0 16px}
-.album{padding:80px 0 20px;perspective:1200px}
-.ah{display:flex;align-items:end;justify-content:space-between;margin-bottom:26px;gap:16px}
-.ah h2{font-size:clamp(28px,5vw,52px)}
-.ah span{color:var(--gold);font-size:13px;letter-spacing:2px}
-.grid{columns:3 260px;column-gap:14px}
-.tile{--rx:16deg;--ty:50px;break-inside:avoid;margin-bottom:14px;border-radius:14px;overflow:hidden;position:relative;cursor:zoom-in;background:var(--surf);opacity:0;transform:perspective(800px) rotateX(var(--rx)) rotateY(var(--ry,0deg)) translateY(var(--ty));transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .8s,box-shadow .4s}
-.tile.in{--rx:0deg;--ty:0px;opacity:1}
-.tile:hover{box-shadow:0 24px 50px rgba(0,0,0,.45),0 0 0 1px var(--gold)}
-.tile img,.ph{display:block;width:100%;transition:transform .6s}
-.ph{display:grid;place-items:center;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:2px}
-.tile:hover img,.tile:hover .ph{transform:scale(1.08)}
-.tile::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.28),transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none}
-.tile:hover::after{opacity:1}
-.note{max-width:1200px;margin:60px auto 0;padding:0 16px;color:var(--mut);font-size:13px;text-align:center;line-height:1.7}
-footer{margin-top:90px;border-top:1px solid var(--line);padding:40px 20px calc(env(safe-area-inset-bottom,0px) + 40px);text-align:center;color:var(--mut);font-size:14px}
-footer a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold)}
-#lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:50;display:none;place-items:center;padding:20px}
-#lb.open{display:grid}
-#lb .box{max-width:min(92vw,1100px);max-height:86vh;width:100%;border-radius:12px;overflow:hidden;animation:pop .4s cubic-bezier(.2,.9,.3,1.2)}
-@keyframes pop{from{opacity:0;transform:perspective(900px) rotateY(-25deg) scale(.88)}}
-#lb img,#lb .ph{width:100%;max-height:86vh;object-fit:contain;aspect-ratio:var(--r,4/3)}
-#lb button{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:0;width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer}
-#lb button:hover{background:var(--gold)}
-.x{top:calc(env(safe-area-inset-top,0px) + 16px);right:16px}.pv{left:12px;top:50%}.nx{right:12px;top:50%}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.tile{opacity:1;transform:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GDFA — Moments of Our Community</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header class="hero" id="hero">
-  <div class="frame" id="frame"><div class="hph" id="hph">TEAM PHOTO HERE</div><a class="down" href="#intro" aria-label="Scroll down">↓</a></div>
-</header>
+  <header class="hero" id="hero">
+    <div class="frame" id="frame">
+      <div class="hph" id="hph">TEAM PHOTO HERE</div><a class="down" href="#intro" aria-label="Scroll down">↓</a>
+    </div>
+  </header>
 
-<section class="intro" id="intro">
-  <canvas id="dust"></canvas>
-  <div>
-    <div class="logo">GDFA</div>
-    <h1 class="serif">Together, we <em>create</em><br>memories.</h1>
-    <p class="sub">A freelancing community from Dinajpur — events, meetups and moments, told in pictures.</p>
-    <a class="btn" href="#albums">Explore Moments</a>
-    <div class="stats"><div><b>5</b>Albums</div><div><b>100+</b>Members</div><div><b>1</b>Family</div></div>
+  <section class="intro" id="intro">
+    <canvas id="dust"></canvas>
+    <div>
+      <div class="logo">GDFA</div>
+      <h1 class="serif">Together, we <em>create</em><br>memories.</h1>
+      <p class="sub">A freelancing community from Dinajpur — events, meetups and moments, told in pictures.</p>
+      <a class="btn" href="#albums">Explore Moments</a>
+      <div class="stats">
+        <div><b>5</b>Albums</div>
+        <div><b>100+</b>Members</div>
+        <div><b>1</b>Family</div>
+      </div>
+    </div>
+  </section>
+
+  <nav id="albums">
+    <div class="pills" id="pills"></div>
+  </nav>
+  <main id="main"></main>
+  <p class="note">Every photo here is a group moment. We keep each album short and respect everyone’s privacy.</p>
+  <footer>© GDFA Community · Built &amp; maintained by <a href="https://bisnukundu.netlify.app" target="_blank"
+      rel="noopener">Bisnu K</a></footer>
+
+  <div id="lb"><button class="x" aria-label="Close">×</button><button class="pv" aria-label="Previous">‹</button>
+    <div class="box" id="lbc"></div><button class="nx" aria-label="Next">›</button>
   </div>
-</section>
-
-<nav id="albums"><div class="pills" id="pills"></div></nav>
-<main id="main"></main>
-<p class="note">Every photo here is a group moment. We keep each album short and respect everyone’s privacy.</p>
-<footer>© GDFA Community · Built &amp; maintained by <a href="https://bisnukundu.netlify.app" target="_blank" rel="noopener">Bisnu K</a></footer>
-
-<div id="lb"><button class="x" aria-label="Close">×</button><button class="pv" aria-label="Previous">‹</button><div class="box" id="lbc"></div><button class="nx" aria-label="Next">›</button></div>
-
-<script>
-/* ===== ছবি বসানোর জায়গা =====
-   HERO_IMG: পুরো টিমের ছবি, যেমন "images/team.jpg" (কোনো ডার্ক ওভারলে নেই, ছবি পরিষ্কার দেখাবে)
-   photos: প্রতিটি অ্যালবামে গ্রুপ ছবির পাথ দিন, সর্বোচ্চ ১৫টি। ফাঁকা থাকলে প্লেসহোল্ডার দেখাবে। */
-const HERO_IMG = "";
-const MAX = 15;
-const albums = [
- {id:"v1", name:"GDFA V1 Program", hue:38, photos:[]},
- {id:"iftar", name:"Iftar Event", hue:24, photos:[]},
- {id:"tea", name:"Tea &amp; Coffee Meetups", hue:18, photos:[]},
- {id:"cricket", name:"GDFA Cricket", hue:140, photos:[]},
- {id:"badminton", name:"GDFA Badminton", hue:200, photos:[]}
-];
-const ratios=[[4,5],[1,1],[4,3],[3,4],[16,10],[1,1],[4,5],[3,2]];
-const $=s=>document.querySelector(s), main=$("#main"), pills=$("#pills");
-let cur=[],idx=0;
-/* hero photo + 3D tilt */
-const frame=$("#frame");
-if(HERO_IMG){$("#hph").remove();const im=new Image();im.src=HERO_IMG;im.alt="GDFA team";frame.prepend(im)}
-$("#hero").addEventListener("pointermove",e=>{const r=frame.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
- frame.style.setProperty("--ty",(x*7).toFixed(2)+"deg");frame.style.setProperty("--tx",(-y*5).toFixed(2)+"deg");frame.style.setProperty("--px",x.toFixed(2));frame.style.setProperty("--py",y.toFixed(2))});
-$("#hero").addEventListener("pointerleave",()=>["--ty","--tx","--px","--py"].forEach(p=>frame.style.removeProperty(p)));
-/* albums */
-albums.forEach(a=>{
-  const n=a.photos.length||12, list=Array.from({length:Math.min(n,MAX)},(_,i)=>a.photos[i]||null);
-  a.list=list;
-  pills.insertAdjacentHTML("beforeend",`<button class="pill" data-id="${a.id}">${a.name}</button>`);
-  const s=document.createElement("section");s.className="album";s.id=a.id;
-  s.innerHTML=`<div class="ah"><h2 class="serif">${a.name}</h2><span>${list.length} MOMENTS</span></div><div class="grid"></div>`;
-  const g=s.querySelector(".grid");
-  list.forEach((src,i)=>{
-    const [w,h]=ratios[(i*3+a.hue)%ratios.length];
-    const t=document.createElement("div");t.className="tile";t.dataset.r=`${w}/${h}`;
-    t.innerHTML=src?`<img loading="lazy" src="${src}" alt="${a.name} group photo">`:
-     `<div class="ph" style="aspect-ratio:${w}/${h};background:linear-gradient(${135+i*25}deg,hsl(${a.hue+i*7} 45% 28%),hsl(${a.hue+40+i*5} 40% 14%))">GDFA</div>`;
-    t.onclick=()=>open(a,i);
-    t.addEventListener("pointermove",e=>{const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
-      t.style.setProperty("--ry",((x-.5)*14).toFixed(1)+"deg");t.style.setProperty("--rx",((.5-y)*14).toFixed(1)+"deg");t.style.setProperty("--gx",x*100+"%");t.style.setProperty("--gy",y*100+"%")});
-    t.addEventListener("pointerleave",()=>["--ry","--rx"].forEach(p=>t.style.removeProperty(p)));
-    g.appendChild(t);
-  });
-  main.appendChild(s);
-});
-pills.onclick=e=>{const b=e.target.closest(".pill");if(b)document.getElementById(b.dataset.id).scrollIntoView()};
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
-document.querySelectorAll(".tile").forEach((t,i)=>{t.style.transitionDelay=(i%3)*110+"ms,"+(i%3)*110+"ms,0ms";io.observe(t)});
-const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",p.dataset.id===e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
-document.querySelectorAll(".album").forEach(s=>so.observe(s));
-/* floating gold dust */
-(()=>{const c=$("#dust"),x=c.getContext("2d");let W,H,P=[];
- const fit=()=>{W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;P=Array.from({length:Math.round(W/16)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2+.6,v:Math.random()*.5+.15,o:Math.random()*.6+.2}))};
- fit();addEventListener("resize",fit);
- if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
- (function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.y-=p.v;p.x+=Math.sin(p.y/40)*.3;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}x.beginPath();x.arc(p.x,p.y,p.r,0,6.3);x.fillStyle=`rgba(217,164,65,${p.o})`;x.fill()});requestAnimationFrame(f)})()})();
-/* lightbox */
-const lb=$("#lb"),lbc=$("#lbc");
-function open(a,i){cur=a.list.map((s,k)=>({s,a,k}));idx=i;show();lb.classList.add("open")}
-function show(){const {s,a,k}=cur[idx];const r=document.querySelectorAll("#"+a.id+" .tile")[k].dataset.r;
- lbc.innerHTML=s?`<img src="${s}" alt="">`:`<div class="ph" style="--r:${r};aspect-ratio:${r};background:linear-gradient(135deg,hsl(${a.hue+k*7} 45% 28%),hsl(${a.hue+40} 40% 14%))">GDFA</div>`}
-const go=d=>{idx=(idx+d+cur.length)%cur.length;show()};
-lb.querySelector(".x").onclick=()=>lb.classList.remove("open");
-lb.querySelector(".pv").onclick=()=>go(-1);lb.querySelector(".nx").onclick=()=>go(1);
-lb.onclick=e=>{if(e.target===lb)lb.classList.remove("open")};
-document.onkeydown=e=>{if(!lb.classList.contains("open"))return;if(e.key==="Escape")lb.classList.remove("open");if(e.key==="ArrowLeft")go(-1);if(e.key==="ArrowRight")go(1)};
-</script>
+  <script src="script.js"></script>
 </body>
+
 </html>
