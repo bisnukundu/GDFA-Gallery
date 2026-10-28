@@ -6,11 +6,47 @@
 const HERO_IMG = "images/teams.jpg";
 const MAX = 15;
 const albums = [
-    { id: "v1", name: "GDFA V1 Program", hue: 38, photos: [] },
-    { id: "iftar", name: "Iftar Event", hue: 24, photos: [] },
-    { id: "tea", name: "Tea &amp; Coffee Meetups", hue: 18, photos: [] },
-    { id: "cricket", name: "GDFA Cricket", hue: 140, photos: [] },
-    { id: "badminton", name: "GDFA Badminton", hue: 200, photos: [] }
+    { id: "v1", name: "GDFA V1 Program", hue: 38, photos: [
+        "images/event-photos/webp/DSC02211.webp",
+        "images/event-photos/webp/DSC02287.webp",
+        "images/event-photos/webp/DSC02306.webp",
+        "images/event-photos/webp/DSC02561.webp",
+        "images/event-photos/webp/DSC02613.webp",
+        "images/event-photos/webp/DSC02641.webp",
+        "images/event-photos/webp/DSC02778.webp",
+        "images/event-photos/webp/DSC05657.webp",
+        "images/event-photos/webp/DSC05691.webp",
+        "images/event-photos/webp/DSC02270.webp",
+        "images/event-photos/webp/DSC05764.webp",
+        "images/event-photos/webp/DSC05794.webp",
+        "images/event-photos/webp/DSC05814.webp",
+        "images/event-photos/webp/DSC05849.webp",
+        "images/event-photos/webp/DSC05934.webp"
+    ] },
+    { id: "iftar", name: "Iftar Event", hue: 24, photos: [
+        "images/ifter-photos/webp/IMG_1630.webp",
+        "images/ifter-photos/webp/IMG_1631.webp",
+        "images/ifter-photos/webp/IMG_1635.webp",
+        "images/ifter-photos/webp/IMG_1636.webp",
+        "images/ifter-photos/webp/IMG_1637.webp",
+        "images/ifter-photos/webp/IMG_1638.webp",
+        "images/ifter-photos/webp/IMG_1643.webp",
+        "images/ifter-photos/webp/IMG_1644.webp",
+        "images/ifter-photos/webp/IMG_1651.webp"
+    ] },
+    { id: "tea", name: "Tea &amp; Coffee Meetups", hue: 18, photos: [
+        "images/coffie-adda-photos/webp/IMG_2099.webp",
+        "images/coffie-adda-photos/webp/IMG_2112.webp",
+        "images/coffie-adda-photos/webp/IMG_2119.webp",
+        "images/coffie-adda-photos/webp/IMG_2139.webp",
+        "images/coffie-adda-photos/webp/IMG_2164.webp",
+        "images/coffie-adda-photos/webp/IMG_2174.webp",
+        "images/coffie-adda-photos/webp/IMG_4434.webp",
+        "images/coffie-adda-photos/webp/IMG_4436.webp",
+        "images/coffie-adda-photos/webp/IMG_4437.webp"
+    ] },
+    // { id: "cricket", name: "GDFA Cricket", hue: 140, photos: [] },
+    // { id: "badminton", name: "GDFA Badminton", hue: 200, photos: [] }
 ];
 const ratios = [[4, 5], [1, 1], [4, 3], [3, 4], [16, 10], [1, 1], [4, 5], [3, 2]];
 const $ = s => document.querySelector(s), main = $("#main"), pills = $("#pills");
